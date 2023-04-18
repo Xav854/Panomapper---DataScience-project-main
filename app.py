@@ -183,8 +183,8 @@ if not address and run_detection:
         ### Please enter an address
         '''
 
-elif run_detection and address: 
-    
+elif run_detection and address:
+
     map_container = folium.Map(location=[latitude, longitude], zoom_start=13, tiles=final_url, attr='IGN-F/Géoportail', max_zoom = 19)
     folium.Marker(location=address_coordinates, tooltip=address).add_to(map_container)
     if tile_name:
@@ -201,7 +201,7 @@ elif run_detection and address:
                 for feature in detections_geojson['features']:
                     if feature['properties']['tile'] == tile:
                         filtered_detections.append(feature)
-                    
+
                 if address_coordinates:
                     folium.Marker(location=address_coordinates, tooltip=address).add_to(map_container)
                     map_container.fit_bounds([[address_coordinates[0], address_coordinates[1]]])
@@ -211,8 +211,8 @@ elif run_detection and address:
         detections_layer = folium.FeatureGroup(name='detections')
         for detection in detections_geojson["features"]:
             geojson = folium.GeoJson(
-                detection, 
-                name="detection", 
+                detection,
+                name="detection",
                 style_function=lambda x: {'fillColor': 'pink', 'weight': 6, 'color': 'red', 'fillOpacity': 0.4},
                 tooltip=folium.GeoJsonTooltip(fields=['SURFACE', 'kWp'], aliases=['Surface =', 'kWp =']))
             geojson.add_to(detections_layer)
@@ -233,7 +233,7 @@ elif run_detection and address:
             ).add_to(map_container)
 
     '''
-    ## Detection Summary : 
+    ## Detection Summary :
     '''
     st.write(f"For a surface of approximately 220 km² around {address}")
     st.write(f"Total Detections: **{total_detections}**")
@@ -309,14 +309,14 @@ else:
 
     '''
     ### _No detections yet._
-    
+
     <br><br><br><br><br>
 
     ''', unsafe_allow_html=True
 )
 
 st.empty()
-st.empty()  
+st.empty()
 st.empty()
 st.empty()
 st.empty()
